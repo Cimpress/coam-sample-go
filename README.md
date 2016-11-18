@@ -16,7 +16,7 @@ In addition to the aforementioned development dependencies, you will need the fo
 
 ## Getting started
 
-First and foremost, populate a `.env` file with client ID and client secret
+First and foremost, populate a `.env` file with client ID and client secret:
 
 ```
 $ cat > .env <<EOF
