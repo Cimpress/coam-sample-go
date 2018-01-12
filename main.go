@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	sub                = "adfs|cbaldauf@cimpress.com"
+	principal                = "adfs|jdaviscooke@cimpress.com"
 	resourceType       = "merchants"
 	resourceIdentifier = "vistaprint"
 )
@@ -55,7 +55,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Printf("Retrieving IAM access token for client ID %s\n", clientID)
+	log.Printf("Retrieving access token for client ID %s\n", clientID)
 
 	resp, err := http.Post("https://cimpress.auth0.com/oauth/token", "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
@@ -72,7 +72,7 @@ func main() {
 	log.Printf("Access Token: %s\n", t.AccessToken)
 
 	// Request IAM permisisons
-	url := fmt.Sprintf("https://api.cimpress.io/auth/iam/v0/user-permissions/%s/%s/%s", sub, resourceType, resourceIdentifier)
+	url := fmt.Sprintf("https://api.cimpress.io/auth/access-management/v1/principals/%s/permissions/%s/%s", principal, resourceType, resourceIdentifier)
 	authHeader := fmt.Sprintf("Bearer %s", t.AccessToken)
 
 	client := &http.Client{}
@@ -82,7 +82,7 @@ func main() {
 	}
 	req.Header.Add("Authorization", authHeader)
 
-	log.Printf("Retrieving IAM permissions for %s on %s %s", sub, resourceType, resourceIdentifier)
+	log.Printf("Retrieving COAM permissions for %s on %s %s", principal, resourceType, resourceIdentifier)
 
 	resp, err = client.Do(req)
 	if err != nil {

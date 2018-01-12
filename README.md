@@ -10,9 +10,7 @@ or
 
 In addition to the aforementioned development dependencies, you will need the following:
 
-- Client ID / Secret
-- Client authorized to access api.cimpress.io
-- Permissions configured in IAM
+- Client ID / Secret (You can create one at https://developer.cimpress.io/clients/create if you need one)
 
 ## Getting started
 
